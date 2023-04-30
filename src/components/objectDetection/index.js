@@ -1,5 +1,6 @@
 import "@tensorflow/tfjs-backend-cpu";
 import "@tensorflow/tfjs-backend-webgl";
+import "@tensorflow/tfjs-core";
 import * as cocoSsd from "@tensorflow-models/coco-ssd";
 import { useRef, useState } from "react";
 
@@ -13,7 +14,18 @@ const ObjectDetector = (props) => {
     if (fileInputRef.current) fileInputRef.current.click();
   };
 
-  //tensorflow part
+  // -------------->> Tensorflow part <----------------------
+
+  const detectObjectOnImage = async (imageElement) => {
+    //loading coco model..
+    const model = await cocoSsd.load({});
+
+    //this predication is like array with bounding box
+    //we detect model having the image..
+
+    const predictions = await model.detect(imageElement, 6);
+    console.log("predictions", predictions);
+  };
 
   const readImage = (file) => {
     return new Promise((resolve, reject) => {
@@ -27,8 +39,14 @@ const ObjectDetector = (props) => {
   const onSelectImage = async (e) => {
     const file = e.target.files[0];
     const imgData = await readImage(file);
-
     setImgData(imgData);
+
+    const imageElement = document.createElement("img");
+    imageElement.src = imgData;
+
+    imageElement.onload = async () => {
+      await detectObjectOnImage(imageElement);
+    };
   };
 
   return (
