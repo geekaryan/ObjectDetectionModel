@@ -1,7 +1,10 @@
+import styles from "./index.module.css";
+import ObjectDetector from "./components/objectDetection/index";
+
 const App = () => {
   return (
-    <div>
-      <h1>hi </h1>
+    <div className={styles.appContainer}>
+      <ObjectDetector />
     </div>
   );
 };
