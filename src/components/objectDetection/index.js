@@ -113,7 +113,7 @@ const ObjectDetector = (props) => {
   return (
     <div>
       <div className={styles.heading}>
-        <span>Image Recognizing AI</span>
+        <span>Image Recognizing AI </span>
       </div>
 
       <div className={styles.container}>
