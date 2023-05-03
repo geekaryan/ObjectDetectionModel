@@ -72,11 +72,14 @@ const ObjectDetector = (props) => {
     //loading coco model..
     const model = await cocoSsd.load({});
 
+    console.log("model is loaded");
+
     //this predication is like array with bounding box
     //we detect model having the image..
 
     const predictions = await model.detect(imageElement, 6);
     const normalizePredictions = normalizePrediction(predictions, imgSize);
+    console.log("normalization is done now we are setting our state");
     setPrediction(normalizePredictions);
     console.log("predictions", predictions);
   };
