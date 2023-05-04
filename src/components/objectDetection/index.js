@@ -65,7 +65,7 @@ const ObjectDetector = (props) => {
     });
   };
 
-  // -------------->> Tensorflow part <----------------------
+  // -------------->> Tensorflow part <------------------------
 
   const detectObjectOnImage = async (imageElement, imgSize) => {
     console.log("modellling is running in the back");
